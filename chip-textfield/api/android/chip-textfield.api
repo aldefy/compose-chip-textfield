@@ -1,0 +1,57 @@
+public final class io/github/aldefy/chiptextfield/ChipTextFieldColors {
+	public static final field $stable I
+	public synthetic fun <init> (JJJJJJJJJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-0d7_KjU ()J
+	public final fun component2-0d7_KjU ()J
+	public final fun component3-0d7_KjU ()J
+	public final fun component4-0d7_KjU ()J
+	public final fun component5-0d7_KjU ()J
+	public final fun component6-0d7_KjU ()J
+	public final fun component7-0d7_KjU ()J
+	public final fun component8-0d7_KjU ()J
+	public final fun component9-0d7_KjU ()J
+	public final fun copy-5r9EGqc (JJJJJJJJJ)Lio/github/aldefy/chiptextfield/ChipTextFieldColors;
+	public static synthetic fun copy-5r9EGqc$default (Lio/github/aldefy/chiptextfield/ChipTextFieldColors;JJJJJJJJJILjava/lang/Object;)Lio/github/aldefy/chiptextfield/ChipTextFieldColors;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChipBackgroundColor-0d7_KjU ()J
+	public final fun getChipBorderColor-0d7_KjU ()J
+	public final fun getChipTextColor-0d7_KjU ()J
+	public final fun getContainerColor-0d7_KjU ()J
+	public final fun getCursorColor-0d7_KjU ()J
+	public final fun getDisabledChipBackgroundColor-0d7_KjU ()J
+	public final fun getDisabledChipTextColor-0d7_KjU ()J
+	public final fun getPlaceholderColor-0d7_KjU ()J
+	public final fun getTextColor-0d7_KjU ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/aldefy/chiptextfield/ChipTextFieldDefaults {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/aldefy/chiptextfield/ChipTextFieldDefaults;
+	public final fun colors-5r9EGqc (JJJJJJJJJ)Lio/github/aldefy/chiptextfield/ChipTextFieldColors;
+	public static synthetic fun colors-5r9EGqc$default (Lio/github/aldefy/chiptextfield/ChipTextFieldDefaults;JJJJJJJJJILjava/lang/Object;)Lio/github/aldefy/chiptextfield/ChipTextFieldColors;
+	public final fun getDelimiters ()Ljava/util/Set;
+	public final fun getShape ()Landroidx/compose/ui/graphics/Shape;
+}
+
+public final class io/github/aldefy/chiptextfield/ChipTextFieldKt {
+	public static final fun ChipTextField (Lio/github/aldefy/chiptextfield/ChipTextFieldState;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function4;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;ZZLjava/util/Set;ILio/github/aldefy/chiptextfield/ChipTextFieldColors;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class io/github/aldefy/chiptextfield/ChipTextFieldState {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addChip (Ljava/lang/Object;)V
+	public final fun clearChips ()V
+	public final fun getChips ()Ljava/util/List;
+	public final fun removeChip (Ljava/lang/Object;)V
+	public final fun removeChipAt (I)V
+}
+
+public final class io/github/aldefy/chiptextfield/ChipTextFieldStateKt {
+	public static final fun rememberChipTextFieldState (Ljava/util/List;Landroidx/compose/runtime/Composer;II)Lio/github/aldefy/chiptextfield/ChipTextFieldState;
+}
+
