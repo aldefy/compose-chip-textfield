@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -26,30 +28,18 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: Publish to Maven Central
+      - name: Build signed staging bundle
         run: |
-          ./gradlew :chip-textfield:publishAllPublicationsToSonatypeRepository \
-            -Psigning.gnupg.keyName=${{ secrets.GPG_KEY_ID }} \
-            -PossrhUsername=${{ secrets.OSSRH_USERNAME }} \
-            -PossrhPassword=${{ secrets.OSSRH_PASSWORD }}
+          ./gradlew :chip-textfield:publishAllPublicationsToLocalStagingRepository \
+            -Psigning.gnupg.keyName=${{ secrets.GPG_KEY_ID }}
 
-  build:
-    runs-on: macos-latest
-    if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags/')
-    steps:
-      - uses: actions/checkout@v4
+      - name: Create bundle zip for Central Portal
+        run: |
+          cd chip-textfield/build/staging-deploy
+          zip -r ../../../maven-central-bundle.zip .
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Create GitHub Release with bundle
+        uses: softprops/action-gh-release@v2
         with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Build & Test
-        run: ./gradlew :chip-textfield:build :chip-textfield:allTests :chip-textfield:apiCheck
-
-      - name: Build Sample (Android + Desktop)
-        run: ./gradlew :sample:assembleDebug :sample:desktopJar
+          files: maven-central-bundle.zip
+          generate_release_notes: true
