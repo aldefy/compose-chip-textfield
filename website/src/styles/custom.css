@@ -1,0 +1,13 @@
+:root {
+  --sl-color-accent-low: #172052;
+  --sl-color-accent: #4f6df5;
+  --sl-color-accent-high: #b4c6fc;
+  --sl-font: 'Inter', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #b4c6fc;
+  --sl-color-accent: #4f6df5;
+  --sl-color-accent-high: #1e2d6d;
+}

@@ -1,0 +1,54 @@
+---
+title: ChipTextField
+description: Material-free chip input for Compose Multiplatform
+template: splash
+hero:
+  tagline: A Material-free chip input field built entirely on Compose Foundation. Works with Material 2, Material 3, or any custom design system.
+  image:
+    file: ../../assets/logo-dark.svg
+  actions:
+    - text: Get Started
+      link: /compose-chip-textfield/getting-started/installation/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/aldefy/compose-chip-textfield
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why ChipTextField?
+
+<CardGrid stagger>
+  <Card title="Zero Material dependency" icon="puzzle">
+    Built on Compose Foundation only. Drop it into Material 2, Material 3, or your own design system without conflicts.
+  </Card>
+  <Card title="Multiplatform" icon="rocket">
+    Android, iOS, Desktop (JVM), and Web (Wasm) from a single API. True KMP.
+  </Card>
+  <Card title="Slot-based customization" icon="setting">
+    Three levels: tweak colors, add leading/trailing icons via `ChipScope`, or replace the entire chip with `chipContent`.
+  </Card>
+  <Card title="Production features" icon="approve-check">
+    Suggestions, validation, delimiter support, backspace removal, max chip limits, and read-only mode — all built in.
+  </Card>
+</CardGrid>
+
+## Platforms
+
+| Android | iOS | Desktop (JVM) | Web (Wasm) |
+|:-------:|:---:|:-------------:|:----------:|
+|    ✓    |  ✓  |       ✓       |     ✓      |
+
+## Quick Example
+
+```kotlin
+val state = rememberChipTextFieldState<String>()
+
+ChipTextField(
+    state = state,
+    onCreateChip = { text -> text.ifBlank { null } },
+    placeholder = { Text("Type and press Enter...") },
+)
+```

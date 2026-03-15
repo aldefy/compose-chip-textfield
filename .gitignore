@@ -10,3 +10,6 @@
 *.hprof
 *.DS_Store
 .kotlin/
+website/node_modules/
+website/dist/
+website/.astro/
