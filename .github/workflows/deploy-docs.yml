@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches: [main]
-    paths: ['website/**']
+    paths: ['website/**', 'sample/**', 'chip-textfield/**']
   workflow_dispatch:
 
 permissions:
@@ -18,11 +18,18 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: website
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build Wasm demo
+        run: ./gradlew :sample:wasmJsBrowserDistribution
 
       - uses: actions/setup-node@v4
         with:
@@ -30,9 +37,30 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
 
-      - run: npm ci
+      - name: Build docs site
+        working-directory: website
+        run: npm ci && npm run build
 
-      - run: npm run build
+      - name: Copy Wasm demo into docs
+        run: |
+          mkdir -p website/dist/demo
+          cp -r sample/build/dist/wasmJs/productionExecutable/* website/dist/demo/
+          cat > website/dist/demo/index.html << 'DEMOEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>ChipTextField Demo</title>
+            <style>
+              html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+            </style>
+          </head>
+          <body>
+            <script src="chipTextField.js"></script>
+          </body>
+          </html>
+          DEMOEOF
 
       - uses: actions/upload-pages-artifact@v3
         with:
